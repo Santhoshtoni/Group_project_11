@@ -18,21 +18,21 @@ def about():
 
 @app.route("/data")
 def data():
-    try:
-        # Connect to the SQLite database
-        con = sqlite3.connect(file_path)
-        cursor = con.cursor()
 
-        # Select the first 10 records from the Study_Performance table
-        cursor.execute("SELECT * FROM Study_Performance ORDER BY 1 ASC LIMIT 10")
-        study_performance = cursor.fetchall()
+    # Connect to the SQLite database
+    con = sqlite3.connect(file_path)
+    cursor = con.cursor()
 
-        # Close the database connection
-        con.close()
+    # Select the first 10 records from the Study_Performance table
+    cursor.execute("SELECT * FROM Study_Performance ORDER BY 1 ASC LIMIT 10")
+    study_performance = cursor.fetchall()
+
+    # Close the database connection
+    con.close()
 
 
-        # Render the template with the fetched data
-        return render_template("data_table_fillin.html", data=study_performance)
+    # Render the template with the fetched data
+    return render_template("data_table_fillin.html", data=study_performance)
 
 if __name__ == "__main__":
     app.run(debug=True)
